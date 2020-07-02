@@ -95,7 +95,14 @@ $resultset = mysqli_query($conn,$sql);
                                                     <td> <?php echo $row['id']; ?> </td>
                                                     <td> <?php echo $row['first_name']; ?> </td>
                                                     <td> <?php echo $row['last_name']; ?> </td>
-                                                    <td> <?php echo $row['gender']; ?> </td>
+                                                    <td>
+                                                        <?php
+                                                            if($row['gender'] == 0) : echo 'Male';    
+                                                            elseif($row['gender'] == 1) : echo 'Female';    
+                                                            else : echo 'Others';
+                                                            endif      
+                                                        ?>
+                                                    </td>
                                                     <td> <?php echo $row['mobile']; ?> </td>
                                                     <td> <?php echo $row['email']; ?> </td>
                                                     <td> <?php echo $row['dob']; ?> </td>

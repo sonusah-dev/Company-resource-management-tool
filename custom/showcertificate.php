@@ -77,13 +77,19 @@ $resultset = mysqli_query($conn, $sql);
                                             <tbody>
                                             <?php while($row = mysqli_fetch_array($resultset)) : ?>
                                                 <tr>
-                                                    <th><?php echo $row['id']; ?></th>
-                                                    <th><?php echo $row['certificate_id']; ?></th>
-                                                    <th><?php echo $row['student']; ?></th>
-                                                    <th><?php echo $row['course_id']; ?></th>
-                                                    <th><?php echo $row['issue_date']; ?></th>
-                                                    <th><?php echo $row['certificate_type']; ?></th>
-                                                    <th><?php echo $row['rank']; ?></th>
+                                                    <td><?php echo $row['id']; ?></td>
+                                                    <td><?php echo $row['certificate_id']; ?></td>
+                                                    <td><?php echo $row['student']; ?></td>
+                                                    <td><?php echo $row['course_id']; ?></td>
+                                                    <td><?php echo $row['issue_date']; ?></td>
+                                                    <td><?php echo $row['certificate_type']; ?></td>
+                                                    <td>
+                                                    <?php
+                                                        if($row['rank'] == 0) : echo "PASS";
+                                                        else: echo "FAIL";
+                                                        endif
+                                                    ?>
+                                                    </td>
                                                     <td>
                                                         <ul class="d-flex justify-content-center">
                                                             <li class="mr-3"><a href="editcertificate.php?id=<?php echo $row['id']; ?>" class="text-secondary"><i class="fa fa-edit"></i></a></li>

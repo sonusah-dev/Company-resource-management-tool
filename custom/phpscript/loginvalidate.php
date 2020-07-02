@@ -12,7 +12,7 @@ include('connection.php');
 $sql = "SELECT * FROM admin WHERE email=$email && password=$password";
 $result = mysqli_query($conn,$sql);
 
-if(mysqli_num_rows($result) == 1) {
+if(mysqli_num_rows($result) == 0) {
     $row = mysqli_fetch_array($result); 
     $_SESSION["id"] = $row["id"];
     $_SESSION["email"] = $row["email"];

@@ -102,7 +102,14 @@
                   <div class="col-md-4 mb-3">
                     <label for="course"><b>Course</b></label>
                     <select name="course" class="custom-select" id="course">
-                      <option value="<?php ?>" selected>Select Course</option>
+                      <?php
+                        include('phpscript/connection.php');                          
+                        $sql = 'SELECT course_name from course';
+                        $result = mysqli_query($conn,$sql);
+                        while($row = mysqli_fetch_array($result)) :
+                      ?>
+                      <option value="<?php echo $row['course_name']; ?>"><?php echo $row['course_name']; ?></option>
+                      <?php endwhile ?>
                     </select>
                     <div class="valid-feedback">
                       Please provide a valid time.
@@ -111,10 +118,14 @@
                   <div class="col-md-4 mb-3">
                     <label for="trainer"><b>Trainer</b></label>
                     <select name="trainer" class="custom-select" id="trainer">
-                      <option value="">---Select Trainer---</option>
-                      <option value="Sonu">Sonu</option>
-                      <option value="Vikas">Vikas</option>
-                      <option value="Dhirendra">Dhiru</option>
+                      <?php
+                        include('phpscript/connection.php');                          
+                        $sql = 'SELECT first_name, last_name from employee';
+                        $result = mysqli_query($conn,$sql);
+                        while($row = mysqli_fetch_array($result)) :
+                      ?>
+                      <option value="<?php echo $row['first_name']." ".$row['last_name']; ?>"><?php echo $row['first_name']." ".$row['last_name']; ?></option>
+                      <?php endwhile ?>
                     </select>
                     <div class="valid-feedback">
                       Please provide a valid time.
@@ -178,13 +189,10 @@
                   </div>
                   <div class="col-md-6 mb-3">
                     <label for="validationCustom01"><b>Completed</b></label>
-                    <input
-                      type="text"
-                      name="completed"
-                      class="form-control"
-                      id="validationCustom01"
-                      placeholder=""
-                    />
+                    <select class="custom-select" name="completed" id="validationCustom01">
+                      <option value="0">RUNNING</option>
+                      <option value="1">COMPLETED</option>
+                    </select>
                     <div class="valid-feedback">
                       Please provide a valid.
                     </div>

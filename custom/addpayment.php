@@ -68,7 +68,16 @@
                                 <div class="form-row">
                                     <div class="col-md-4 mb-3">
                                         <label for="validationCustom03"> <b>Student</b> <span class="text-danger"> *</span></label>
-                                        <input type="text" name="student" class="form-control" id="validationCustom03" placeholder="" required="">
+                                        <select class="custom-select" name="student" id="validationCuston03">
+                                        <?php
+                                            include('phpscript/connection.php');
+                                            $sql = 'SELECT first_name, last_name from student';
+                                            $result = mysqli_query($conn,$sql);
+                                            while($row = mysqli_fetch_array($result)) :
+                                        ?>
+                                            <option value="<?php echo $row['first_name']." ".$row['last_name']; ?>"><?php echo $row['first_name']." ".$row['last_name']; ?></option>     
+                                        <?php endwhile ?>
+                                        </select>  
                                         <div class="valid-feedback">
                                             Please provide a valid name.
                                         </div>
@@ -87,7 +96,7 @@
                                              Please provide a valid detail.
                                          </div>
                                      </div>
-                                    </div>
+                                   </div>
                                    <div class="form-row">  
                                         <div class="col-md-4 mb-3">
                                             <label for="validationCustom03"> <b>Reference</b></label>
@@ -97,18 +106,21 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                           <label for="validationCustom03"> <b>Mode</b></label>
-                                                 <input type="text" name="mode" class="form-control" id="validationCustom03" placeholder="" >
-                                                    <div class="invalid-feedback">
-                                                        Please provide a valid detail.
-                                                    </div>
+                                            <label for="validationCustom03"> <b>Mode</b></label>
+                                            <select class="custom-select" name="mode" id="validationCuston03">
+                                                <option value="0">CASH</option>
+                                                <option value="1">CARD</option>
+                                                <option value="2">UPI-ID</option>
+                                                <option value="3">PhoneNO</option>
+                                                <option value="4">Net Banking</option>
+                                            </select>
                                          </div>
                                         <div class="col-md-4 mb-3">
-                                        <label for="validationCustom03"> <b>Status</b></label>
-                                        <input type="text" name="status" class="form-control" id="validationCustom03" placeholder="" >
-                                            <div class="invalid-feedback">
-                                                Please provide a valid detail.
-                                            </div>
+                                            <label for="validationCustom03"> <b>Status</b></label>
+                                            <select class="custom-select" name="status" id="validatioCuston03">
+                                                <option value="0">PENDING</option>
+                                                <option value="1">PAID</option>
+                                            </select>
                                         </div>
                                       </div>                                        
                                     <button class="btn btn-primary pull-right" type="submit">Submit</button>
@@ -117,9 +129,9 @@
                         </div>
                     </div>
                     <!-- ends form group -->
-                 </div>
-             </div>
-
+                </div>
+            </div>
+       
     <!-- jquery latest version -->
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->

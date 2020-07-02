@@ -81,7 +81,13 @@ $resultset = mysqli_query($conn, $sql);
                                                     <td><?php echo $row['course_id']; ?></td>
                                                     <td><?php echo $row['entry_date']; ?></td>
                                                     <td><?php echo $row['valid_upto']; ?></td>
-                                                    <td><?php echo $row['is_active']; ?></td>
+                                                    <td>
+                                                    <?php
+                                                        if($row['is_active'] == 0) : echo "ACTIVE";
+                                                        else: echo "UN-ACTIVE";
+                                                        endif
+                                                    ?>
+                                                    </td>
                                                     <td>
                                                         <ul class="d-flex justify-content-center">
                                                             <li class="mr-3"><a href="editenrollment.php?id=<?php echo $row['id'];?>" class="text-secondary"><i class="fa fa-edit"></i></a></li>

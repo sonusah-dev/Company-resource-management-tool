@@ -90,7 +90,13 @@ $resultset = mysqli_query($conn, $sql);
                                             <td><?php echo $row['course_id']; ?></td>
                                             <td><?php echo $row['batch_starting_date']; ?></td>
                                             <td><?php echo $row['batch_completion_date']; ?></td>
-                                            <td><?php echo $row['is_completed']; ?></td>
+                                            <td>
+                                            <?php
+                                                if($row['is_active'] == 0) : echo "ACTIVE";
+                                                else: echo "UN-ACTIVE";
+                                                endif
+                                            ?>
+                                            </td>
                                             <td>
                                                 <ul class="d-flex justify-content-center">
                                                     <li class="mr-3"><a href="editbatch.php?id=<?php echo $row['id']; ?>" class="text-secondary"><i class="fa fa-edit"></i></a></li>

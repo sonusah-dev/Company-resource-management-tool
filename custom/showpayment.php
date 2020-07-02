@@ -81,7 +81,13 @@ $resultset = mysqli_query($conn, $sql);
                                                     <td> <?php echo $row['student']; ?> </td>
                                                     <td> <?php echo $row['amount']; ?> </td>
                                                     <td> <?php echo $row['amount_paid']; ?> </td>
-                                                    <td> <?php echo $row['payment_status']; ?> </td>
+                                                    <td>
+                                                        <?php
+                                                            if($row['payment_status'] == 0) : echo "Pending" ;
+                                                            else: echo "Paid";
+                                                            endif      
+                                                        ?> 
+                                                    </td>
                                                     <td> <?php echo $row['payment_mode']; ?> </td>
                                                     <td> <?php echo $row['payment_reference_number']; ?> </td>
                                                     <td>

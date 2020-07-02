@@ -75,14 +75,14 @@
                                      </div>
                                      <div class="col-md-4 mb-3">
                                          <label for="validationCustom02"><b>First Name</b><span class="text-danger"> *</span></label>
-                                         <input type="text" name="first" class="form-control" id="validationCustom02" placeholder="" required="">
+                                         <input type="text" name="first" class="form-control" id="validationCustom02"  required="">
                                          <div class="valid-feedback">
                                              Please provide a valid.
                                          </div>
                                      </div>
                                      <div class="col-md-4 mb-3">
                                          <label for="validationCustom03"> <b>Last Name</b><span class="text-danger"> *</span></label>
-                                                <input type="text" name="last" class="form-control" id="validationCustom03" placeholder=""  required="">
+                                                <input type="text" name="last" class="form-control" id="validationCustom03"  required="">
                                                 <div class="invalid-feedback">
                                                     Please provide a valid.
                                                  </div>

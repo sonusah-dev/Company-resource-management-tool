@@ -13,13 +13,14 @@ $completed = $_POST['completed'];
 $id = $_GET['id'];
 
 $sql = "UPDATE batch set batch_code='$batch_code', course_id='$course', emp_id='$trainer', start_time='$start_time', end_time='$end_time',
-        batch_starting_date='$start_date', batch_completion_date='$end_date', is_completed='$completed' WHERE id='$id' ";
+        batch_starting_date='$start_date', batch_completion_date='$end_date', is_active='$completed' WHERE id='$id' ";
 
 if(mysqli_query($conn, $sql)) {
     header('location:../showbatch.php');
 }
 else{
     // header('location:../showbatch.php');
+    echo mysqli_error($conn);
 }
 mysqli_close($conn);
 ?>

@@ -1,3 +1,4 @@
+<?php include('includes/session.php'); ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -33,13 +34,6 @@
   </head>
 
   <body>
-    <!--[if lt IE 8]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
-        your experience.
-      </p>
-    <![endif]-->
     <!-- preloader area start -->
     <div id="preloader">
       <div class="loader"></div>
@@ -48,31 +42,27 @@
     <!-- page container area start -->
     <div class="page-container">
       <!-- sidebar menu area start -->
-      <?php include('sidebar.php'); ?>
+      <?php include('includes/sidebar.php'); ?>
       <!-- sidebar menu area end -->
       <!-- main content area start -->
       <div class="main-content">
-        <!-- header area start -->
-        <?php include('header.php'); ?>
-        <!-- header area end -->
 
         <!-- page title area start -->
-        <?php include('title.php'); ?>
-        <!--page title area end -->
-
+        <?php include('includes/title.php'); ?>
+        <!--page title area end --> 
         <!-- starts form group -->
         <div class="col-12">
-          <?php if(isset($_GET['success'])) : ?>
-          <div class="alert alert-success" role="alert">
-            Added Successfully!
-          </div>
-          <?php endif ?>
-
-          <?php if(isset($_GET['fail'])) : ?>
-          <div class="alert alert-danger" role="alert">
-            Something went wrong!
-          </div>
-          <?php endif ?>
+        <!-- alert to show success message for form submission -->
+        <?php if(isset($_GET['success'])):?>
+            <b id="hide" style="background-color:#51c914; color:white;" class="alert" role="alert">
+              Added Successfully!
+            </b>
+        <?php endif ?>
+        <?php if(isset($_GET['fail'])):?>
+            <b id="hide" style="background-color:red; color:white;" class="alert" role="alert">
+              Something went wrong!
+            </b>
+        <?php endif ?>
           <div class="card mt-5">
             <div class="card-body">
               <h4 class="header-title">Add Certificates</h4>
@@ -86,14 +76,15 @@
                     <label for="validationCustom02"
                       ><b>Student</b><span class="text-danger"> *</span></label
                     >
-                    <select name="trainer" class="custom-select" id="trainer">
+                    <select name="student_id" class="custom-select" id="trainer">
+                      <option value="">-Select-</option>
                       <?php
                         include('phpscript/connection.php');                          
-                        $sql = 'SELECT first_name, last_name from student';
+                        $sql = 'SELECT id, first_name, last_name from student';
                         $result = mysqli_query($conn,$sql);
                         while($row = mysqli_fetch_array($result)) :
                       ?>
-                      <option value="<?php echo $row['first_name']." ".$row['last_name']; ?>"><?php echo $row['first_name']." ".$row['last_name']; ?></option>
+                      <option value="<?php echo $row['id']; ?>"><?php echo $row['first_name']." ".$row['last_name']; ?></option>
                       <?php endwhile ?>
                     </select>
                     <div class="valid-feedback">
@@ -104,14 +95,15 @@
                     <label for="validationCustomUsername"
                       ><b>Course</b><span class="text-danger"> *</span></label
                     >
-                    <select name="course" class="custom-select" id="course">
+                    <select name="course_id" class="custom-select" id="course">
+                      <option value="">-Select-</option>
                       <?php
                         include('phpscript/connection.php');                          
-                        $sql = 'SELECT course_name from course';
+                        $sql = 'SELECT id, course_name from course';
                         $result = mysqli_query($conn,$sql);
                         while($row = mysqli_fetch_array($result)) :
                       ?>
-                      <option value="<?php echo $row['course_name']; ?>"><?php echo $row['course_name']; ?></option>
+                      <option value="<?php echo $row['id']; ?>"><?php echo $row['course_name']; ?></option>
                       <?php endwhile ?>
                     </select>
                     <div class="invalid-feedback">
@@ -141,9 +133,15 @@
                       ><b>Certificate Type</b></label
                     >
                     <select class="custom-select" name="type" id="validationCustom03">
-                        <option value="0">WEB</option>
-                        <option value="1">ANDROID</option>
-                        <option value="2">DESIGNING</option>
+                        <option value="">-Select-</option>
+                        <?php
+                          include('phpscript/connection.php');                          
+                          $sql = 'SELECT id, course_category from course';
+                          $result = mysqli_query($conn,$sql);
+                          while($row = mysqli_fetch_array($result)) :
+                        ?>
+                        <option value="<?php echo $row['id']; ?>"><?php echo $row['course_category'] ?></option>
+                        <?php endwhile ?>
                     </select>
                     <div class="invalid-feedback">
                       Please provide a valid type.
@@ -165,6 +163,7 @@
                   <div class="col-md-4 mb-3">
                     <label for="validationCustom04"><b>Rank</b></label>
                     <select class="custom-select" name="type" id="validationCustom03">
+                        <option value="">-Select-</option>
                         <option value="0">PASS</option>
                         <option value="1">FAIL</option>
                     </select>

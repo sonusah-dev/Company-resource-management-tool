@@ -1,3 +1,4 @@
+<?php include('includes/session.php'); ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -48,30 +49,26 @@
     <!-- page container area start -->
     <div class="page-container">
       <!-- sidebar menu area start -->
-      <?php include('sidebar.php'); ?>
+      <?php include('includes/sidebar.php'); ?>
       <!-- sidebar menu area end -->
       <!-- main content area start -->
       <div class="main-content">
-        <!-- header area start -->
-        <?php include('header.php'); ?>
-        <!-- header area end -->
         <!-- page title area start -->
-        <?php include('title.php'); ?>
+        <?php include('includes/title.php'); ?>
         <!--page title area end -->
         <!-- starts form group -->
         <div class="col-12">
           <!-- alert to show success message for form submission -->
-          <?php if(isset($_GET['success'])):?>
-          <div class="alert alert-success" role="alert">
-            Added successfully!
-          </div>
-          <?php endif; ?>
-          <!-- alert to show fail message for form submission -->
-          <?php if(isset($_GET['fail'])):?>
-          <div class="alert alert-danger" role="alert">
-            Somthing went wrong please try again!
-          </div>
-          <?php endif; ?>
+        <?php if(isset($_GET['success'])):?>
+            <b id="hide" style="background-color:#51c914; color:white;" class="alert" role="alert">
+              Added Successfully!
+            </b>
+        <?php endif ?>
+        <?php if(isset($_GET['fail'])):?>
+            <b id="hide" style="background-color:red; color:white;" class="alert" role="alert">
+              Something went wrong!
+            </b>
+        <?php endif ?> 
           <div class="card mt-5">
             <div class="card-body">
               <h4 class="header-title">Add Attendence</h4>
@@ -88,11 +85,11 @@
                     <select class="custom-select" name="student" id="validationCuston03">
                       <?php
                         include('phpscript/connection.php');
-                        $sql = 'SELECT first_name, last_name from student';
+                        $sql = 'SELECT id, first_name, last_name from student';
                         $result = mysqli_query($conn,$sql);
                         while($row = mysqli_fetch_array($result)) :
                       ?>
-                      <option value="<?php echo $row['first_name']." ".$row['last_name']; ?>"><?php echo $row['first_name']." ".$row['last_name']; ?></option>     
+                      <option value="<?php echo $row['id']; ?>"><?php echo $row['first_name']." ".$row['last_name']; ?></option>     
                       <?php endwhile ?>
                     </select>  
                     <div class="valid-feedback">
@@ -103,14 +100,14 @@
                     <label for="validationCustom01"
                       ><b>Batch</b><span class="text-danger"> *</span></label
                     >
-                    <select name="trainer" class="custom-select" id="trainer">
+                    <select name="batch" class="custom-select" id="validationCuston03">
                       <?php
                         include('phpscript/connection.php');                          
-                        $sql = 'SELECT batch_code from batch';
+                        $sql = 'SELECT id, batch_code from batch';
                         $result = mysqli_query($conn,$sql);
                         while($row = mysqli_fetch_array($result)) :
                       ?>
-                      <option value="<?php echo $row['batch_code']; ?>"><?php echo $row['batch_code']; ?></option>
+                      <option value="<?php echo $row['id']; ?>"><?php echo $row['batch_code']; ?></option>
                       <?php endwhile ?>
                     </select>
                     <div class="valid-feedback">

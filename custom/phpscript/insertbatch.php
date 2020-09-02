@@ -12,7 +12,7 @@ $completed = $_POST['completed'];
 
 include('connection.php');
 
-$sql = "INSERT INTO batch (batch_code, start_time, end_time, emp_id, course_id, batch_starting_date,batch_completion_date, is_completed)
+$sql = "INSERT INTO batch (batch_code, start_time, end_time, emp_id, course_id, batch_starting_date,batch_completion_date, is_active)
         VALUES('$batch_code', '$start_time', '$end_time', '$trainer', '$course', '$start_date', '$end_date', '$completed')";
 
 if(mysqli_query($conn, $sql)) {

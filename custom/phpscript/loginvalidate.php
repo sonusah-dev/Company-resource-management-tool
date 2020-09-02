@@ -9,14 +9,20 @@ $password = $_POST['password'];
 include('connection.php');
 
 // Query for checking valid user
-$sql = "SELECT * FROM admin WHERE email=$email && password=$password";
+$sql = "SELECT * FROM admin WHERE email='$email' && password='$password'";
 $result = mysqli_query($conn,$sql);
 
-if(mysqli_num_rows($result) == 0) {
-    $row = mysqli_fetch_array($result); 
-    $_SESSION["id"] = $row["id"];
-    $_SESSION["email"] = $row["email"];
+if(mysqli_num_rows($result) == 1) {
+    $row = mysqli_fetch_array($result);
+    $_SESSION['id'] = $row['id'];
+    $_SESSION['name'] = $row['name'];
+    $_SESSION['email'] = $row['email']; 
+    
     header('location:../admindashboard.php');
     mysqli_close($conn);
 }
-?>
+else{
+    // echo mysqli_error($conn);
+    // echo("something is missing please fix it");
+    header('location:../../index.html');
+}

@@ -1,5 +1,5 @@
 <?php 
-session_start();
+include('includes/session.php');
 include('phpscript/connection.php');
 $sql = "SELECT * from admin";
 $resultset = mysqli_query($conn, $sql);
@@ -39,13 +39,6 @@ $resultset = mysqli_query($conn, $sql);
   </head>
 
   <body>
-    <!--[if lt IE 8]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
-        your experience.
-      </p>
-    <![endif]-->
     <!-- preloader area start -->
     <div id="preloader">
       <div class="loader"></div>
@@ -54,17 +47,41 @@ $resultset = mysqli_query($conn, $sql);
     <!-- page container area start -->
     <div class="page-container">
       <!-- sidebar menu area start -->
-      <?php include('sidebar.php'); ?>
+      <?php include('includes/sidebar.php'); ?>
       <!-- sidebar menu area end -->
       <!-- main content area start -->
       <div class="main-content">
-        <!-- header area start -->
-        <?php include('header.php'); ?>
-        <!-- header area end -->
         <!-- page title area start -->
-        <?php include('title.php')?>
+        <?php include('includes/title.php')?>
         <!--page title area end -->
         <div class="main-content-inner">
+          <?php if(isset($_GET['success'])):?>
+            <b id="hide" style="background-color:#51c914; color:white;" class="alert" role="alert">
+              Deleted Successfully!
+            </b>
+            <script>
+              $(document).ready(()=>{
+              setTimeout(()=>{
+              $("#hide").hide()
+              },3000)
+              })
+              // alert("hello");
+            </script>
+          <?php endif ?>
+          <?php if(isset($_GET['fail'])):?>
+            <b id="hide" style="background-color:red; color:white;" class="alert" role="alert">
+              Something went wrong!
+            </b>
+            <script>
+              $(document).ready(()=>{
+              setTimeout(()=>{
+              $("#hide").hide()
+              },3000)
+              })
+              // alert("hello");
+              </script>
+          <?php endif ?>  
+          
           <div class="row">
             <!-- Progress Table start -->
             <div class="col-12 mt-5">
@@ -74,7 +91,7 @@ $resultset = mysqli_query($conn, $sql);
                   <div class="single-table">
                     <div class="table-responsive">
                       <table
-                        class="table table-hover table-striped text-center"
+                        class="table table-hover text-center"
                       >
                         <thead class="text-uppercase bg-secondary">
                           <tr class="text-white">
@@ -95,13 +112,14 @@ $resultset = mysqli_query($conn, $sql);
                             <td>
                               <ul class="d-flex justify-content-center">
                                 <li class="mr-3">
-                                  <a href="#" class="text-secondary"
+                                  <a href="#" class="text-primary"
                                     ><i class="fa fa-edit"></i
                                   ></a>
                                 </li>
                                 <li>
                                   <a
-                                    href="phpscript/deleteadmin.php?id=<?php echo $row['id']; ?>"
+                                    id="click"
+                                    href="phpscript/deleteadmin.php?id="
                                     class="text-danger"
                                     ><i class="ti-trash"></i
                                   ></a>
@@ -122,7 +140,7 @@ $resultset = mysqli_query($conn, $sql);
         </div>
       </div>
     </div>
-
+      
     <!-- jquery latest version -->
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->

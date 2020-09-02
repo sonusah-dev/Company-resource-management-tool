@@ -26,11 +26,11 @@ $sql = "UPDATE employee SET employee_id='$code', first_name='$first', last_name=
         street='$street', city='$city', pincode='$pin', state='$state' WHERE id='$id' ";
 
 if(mysqli_query($conn, $sql)) {
-    header('location:../showemployee.php');
+    header('location:../showemployee.php?success=ok');
 }
 else {
-    // header('location:../addemployee.php?fail=ok');
-    echo mysqli_error($conn);
+     header('location:../addemployee.php?fail=ok');
+    // echo mysqli_error($conn);
 }
 mysqli_close($conn);
 ?>

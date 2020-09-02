@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'Sonu Sah','sonusah786786@gmail.com','qwerty');
+INSERT INTO `admin` VALUES (1,'Admin','xyz@gmail.com','12345');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,11 +51,11 @@ DROP TABLE IF EXISTS `attendence`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `attendence` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
   `batch_id` int(11) NOT NULL,
   `attendance_date` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `attendence` (
 
 LOCK TABLES `attendence` WRITE;
 /*!40000 ALTER TABLE `attendence` DISABLE KEYS */;
-INSERT INTO `attendence` VALUES (5,10000,10,'2020-05-26 08:05:19'),(6,10,20,'2020-05-26 08:05:37'),(7,15,30,'2020-05-26 08:05:50');
+INSERT INTO `attendence` VALUES (14,2,6,'2020-08-07 11:17:29'),(15,1,6,'2020-08-07 11:24:56');
 /*!40000 ALTER TABLE `attendence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,9 +84,9 @@ CREATE TABLE `batch` (
   `course_id` int(11) NOT NULL,
   `batch_starting_date` date DEFAULT NULL,
   `batch_completion_date` date DEFAULT NULL,
-  `is_completed` tinyint(1) DEFAULT NULL,
+  `is_active` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `batch` (
 
 LOCK TABLES `batch` WRITE;
 /*!40000 ALTER TABLE `batch` DISABLE KEYS */;
-INSERT INTO `batch` VALUES (2,'5','04:00:00','05:30:00',0,0,'2020-05-05','2020-05-15',1),(3,'Android','09:00:00','11:00:00',0,0,'2020-06-01','2020-07-01',0);
+INSERT INTO `batch` VALUES (7,'JIST','01:36:00','03:37:00',4,3,'2020-08-01','2020-08-30',0);
 /*!40000 ALTER TABLE `batch` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,13 +109,13 @@ DROP TABLE IF EXISTS `certificate`;
 CREATE TABLE `certificate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `certificate_id` varchar(100) DEFAULT NULL,
-  `student` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
   `issue_date` date DEFAULT NULL,
   `certificate_type` tinyint(4) DEFAULT NULL,
   `rank` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,7 @@ CREATE TABLE `certificate` (
 
 LOCK TABLES `certificate` WRITE;
 /*!40000 ALTER TABLE `certificate` DISABLE KEYS */;
-INSERT INTO `certificate` VALUES (4,'JAVASCRIPT',8,520,'2020-05-26',1,10000);
+INSERT INTO `certificate` VALUES (9,'LOL',2,3,'2020-04-01',0,0),(10,'Majuli',2,4,'2020-08-01',0,0);
 /*!40000 ALTER TABLE `certificate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,12 +143,12 @@ CREATE TABLE `course` (
   `course_content` varchar(100) NOT NULL,
   `requirement` varchar(100) NOT NULL,
   `who_this_course_is_for` varchar(100) DEFAULT NULL,
-  `course_duration` int(11) NOT NULL COMMENT 'in hours for e.g 90 hrs',
+  `course_duration` varchar(250) NOT NULL,
   `course_category` varchar(100) DEFAULT NULL,
   `course_poster` varchar(100) DEFAULT NULL,
   `course_fee` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +157,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (2,'Sonu Sahhh','kaa khaa gaaa','history of java, introductionnmm','anar aammm','nothinggg','no-one-p',16,'10','no0',1000000),(3,'MEAN STACK ','FROM SCRATCH','MongoDb, Express.js, Angular, Node.js ','Javascript, Typescript, Frontend, Backend, Nodes.js, Server-Side','Basic Js','Web Intrested Person',6,'WEB DEVELOPMENT','0',6000);
+INSERT INTO `course` VALUES (3,'MEAN STACK ','FROM SCRATCH','MongoDb, Express.js, Angular, Node.js ','Javascript, Typescript, Frontend, Backend, Nodes.js, Server-Side','Basic Js','Web Intrested Person','6 months','WEB DEVELOPMENT','Null',6000),(4,'Web','kaa khaa gaa','expert','Javascript, Typescript, Frontend, Backend, Nodes.js, Server-Side','null','Any','1 year','Web','NULL',10000);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +190,7 @@ CREATE TABLE `employee` (
   `state` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mobile` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +199,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (3,'ERR','Sonuu','Sah',1,97067058788,'sonusah78676@gmail.com','2019-11-04',NULL,'Bla Blaa','expertise','2020-05-27 04:51:16',NULL,'OPO0P099OO','89uu89790p','raja maidam new colonyy','Jorhatt',7850017,'Assamm'),(4,'PHP-DEV','Kango','Pongu',0,987654321,'koongo@gmail.com','0000-00-00',NULL,'pro-builder','------ ','2020-05-29 11:25:54',NULL,'KJ90JK90','MSKSWJ12','JAIL ROAD','JORHAT',876786,'ARUNACHAL PRADESH');
+INSERT INTO `employee` VALUES (3,'ERR','Sonuu','Sah',0,97067058788,'sonusah78676@gmail.com','2019-11-04',NULL,'Bla Blaa','expertise','2020-05-27 04:51:16',NULL,'OPO0P099OO','89uu89790p','raja maidam new colonyy','Jorhatt',7850017,'Assamm'),(4,'PHP-DEV','Kango','Pongu',0,987654321,'koongo@gmail.com','2020-08-01',NULL,'pro-builder','------ ','2020-05-29 11:25:54',NULL,'KJ90JK90','MSKSWJ12','JAIL ROAD','JORHAT',876786,'ARUNACHAL PRADESH'),(5,'jetpack','Hello','Sharmah',1,9988990889,'a@gmail.com','2020-08-09',NULL,'Developer','Pro','2020-08-04 12:11:45',NULL,'ESGWTW677','GDVHD677','AT ROAD','JorhAT',7860000,'Bihar');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +218,7 @@ CREATE TABLE `enrollment` (
   `valid_upto` date DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +227,7 @@ CREATE TABLE `enrollment` (
 
 LOCK TABLES `enrollment` WRITE;
 /*!40000 ALTER TABLE `enrollment` DISABLE KEYS */;
-INSERT INTO `enrollment` VALUES (2,34,525,'2020-05-07','2020-06-07',110);
+INSERT INTO `enrollment` VALUES (3,0,0,'2020-07-10','2020-09-10',0),(4,0,0,'2020-07-02','2020-07-25',0);
 /*!40000 ALTER TABLE `enrollment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,13 +241,13 @@ DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `amount` int(11) DEFAULT NULL,
-  `student` int(11) NOT NULL,
+  `student` varchar(255) NOT NULL,
   `payment_status` tinyint(4) unsigned DEFAULT NULL,
   `payment_mode` tinyint(4) DEFAULT NULL,
-  `payment_reference_number` int(11) DEFAULT NULL,
+  `payment_reference_number` varchar(250) NOT NULL,
   `amount_paid` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -256,7 +256,7 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES (2,8000,7,1,2,5,1000);
+INSERT INTO `payment` VALUES (1,5000,'Hello hellopp',1,2,'9890898909',5000);
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -333,7 +333,7 @@ CREATE TABLE `student` (
   `joining_date` date NOT NULL,
   `expiry_date` date DEFAULT NULL,
   `institute` varchar(100) NOT NULL,
-  `joining_year` date DEFAULT NULL,
+  `join_year` int(11) DEFAULT NULL,
   `department` varchar(100) DEFAULT NULL,
   `registration` varchar(50) DEFAULT NULL,
   `street` varchar(100) NOT NULL,
@@ -342,7 +342,7 @@ CREATE TABLE `student` (
   `state` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mobile` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -351,7 +351,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (2,'Dhiru','Sahani',5,9706705800,'dhiru@gmail.com','1995-02-02','2020-01-01','2021-01-01','Jist','0000-00-00','IT','1090','Fancy Ali','JORHAT',785000,'ASSAAM'),(3,'Ram','Haran',0,8978979719,'ram@gmail.com','1970-05-01','2018-01-01','0000-00-00','KU','0000-00-00','MCA','1010','Pulibor','Jorhat',785000,'Assam'),(4,'Hollow','Gram',0,99009900,'gram@gmail.com','1993-04-08','2019-02-10','0000-00-00','AEC','0000-00-00','Mechanical','9089','Cinnamara','Jorhat',786767,'Assam'),(5,'Phulan','Devi',0,987654320,'devi@gmail.com','1997-11-18','2019-04-14','0000-00-00','JEC','0000-00-00','B Tech CS','9089','A.T Road','Jorhat',765432,'Assam');
+INSERT INTO `student` VALUES (1,'Hello','hellopp',2,9988990889,'av@gmail.com','2020-07-06','2020-06-06','2020-05-04','JIST',2013,'IT','78098','KB Road','Jorhat',785001,'Bengal'),(2,'Rock','Sammuel',1,9988990880,'ab@gmail.com','2020-08-08','2020-08-01','2020-08-10','JIST',2010,'IT','78098E','KB Roadd','JorhAT',7860000,'Biharr');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -364,4 +364,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-30 12:23:38
+-- Dump completed on 2020-08-24 14:08:44

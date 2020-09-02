@@ -1,3 +1,4 @@
+<?php include('includes/session.php'); ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
   <head>
@@ -33,13 +34,6 @@
   </head>
 
   <body>
-    <!--[if lt IE 8]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
-        your experience.
-      </p>
-    <![endif]-->
     <!-- preloader area start -->
     <div id="preloader">
       <div class="loader"></div>
@@ -48,30 +42,26 @@
     <!-- page container area start -->
     <div class="page-container">
       <!-- sidebar menu area start -->
-      <?php include('sidebar.php'); ?>
+      <?php include('includes/sidebar.php'); ?>
       <!-- sidebar menu area end -->
       <!-- main content area start -->
       <div class="main-content">
-        <!-- header area start -->
-        <?php include('header.php'); ?>
-        <!-- header area end -->
         <!-- page title area start -->
-        <?php include('title.php'); ?>
+        <?php include('includes/title.php'); ?>
         <!--page title area end -->
         <!-- starts form group -->
-        <div class="col-12">
-          <?php if(isset($_GET['success'])) : ?>
-          <div class="alert alert-success" role="alert">
-            Added Successfully!
-          </div>
-          <?php endif ?>
-
-          <?php if(isset($_GET['fail'])) : ?>
-          <div class="alert alert-danger" role="alert">
-            Something went wrong!
-          </div>
-          <?php endif ?>
-
+        <div class="col-12">                  
+        <!-- alert to show success message for form submission -->
+        <?php if(isset($_GET['success'])):?>
+            <b id="hide" style="background-color:#51c914; color:white;" class="alert" role="alert">
+              Added Successfully!
+            </b>
+        <?php endif ?>
+        <?php if(isset($_GET['fail'])):?>
+            <b id="hide" style="background-color:red; color:white;" class="alert" role="alert">
+              Something went wrong!
+            </b>
+        <?php endif ?> 
           <div class="card mt-5">
             <div class="card-body">
               <h4 class="header-title">Add Section List</h4>
